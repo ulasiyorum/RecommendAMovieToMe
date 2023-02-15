@@ -1,6 +1,11 @@
 import './Question.css';
 import { imagePath } from '../lib/private';
 import { useState, useEffect } from 'react';
+import { getGenres } from '../lib/movies';
+
+
+
+
 
 function QuestionCard(props) {
 
@@ -55,7 +60,7 @@ export default function Question(props) {
     }
 
     return (
-
+        picked.length == 5 ? (<Result picked={picked} movies={movies}/>) : (
         <div className='question'>
             <h1>Pick Your Favorite!</h1>
             <div>
@@ -73,7 +78,88 @@ export default function Question(props) {
                 }
             </div>
         </div>
-
+        )
 
     );
+}
+
+
+function Result(props) {
+
+    const [genre,setGenre] = useState({});
+
+    useEffect(() => {
+        const getGenre = async () => {
+
+            const genres = await getGenres();
+    
+            setGenre(genres);
+        }
+        getGenre();
+      }, []);
+    
+
+    const picked = props.picked;
+    const all = props.movies;
+
+    const genreIds = new Map();
+
+    picked.forEach((movie) => {
+        
+        movie.genre_ids.forEach((id) => {
+
+            if(!genreIds.has(id)) {
+
+                genreIds.set(id,1);
+
+            } else {
+
+                const count = genreIds.get(id) + 1;
+                genreIds.set(id,count);
+
+            }
+
+        });
+
+    });
+
+    const max = maxGenre(genreIds);
+    return ( 
+        genre.tv == undefined ? (<div>Waiting for results</div>) : (<div>{getGenreNamesWithId(max,genre.tv.genres,genre.movie.genres)}</div>)
+    );
+}
+
+
+function getGenreNamesWithId(id,tvGenres,movieGenres) {
+    console.log(id);
+    let name = '';
+    tvGenres.forEach((value) => {
+        if(value.id == id)
+            name = value.name;
+
+    });
+    if(name == '') {
+        movieGenres.forEach((value) => {
+            if(value.id == id)
+                name = value.name;
+
+        });
+    }
+    return name;
+}
+
+
+function maxGenre(set){
+
+    let max = 0;
+    let genre = 0;
+    set.forEach((value,key) => {
+        if(value > max) {
+            max = value;
+            genre = key;
+        }
+    });
+
+    return genre;
+
 }
