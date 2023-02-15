@@ -58,6 +58,10 @@ export default function Question(props) {
         picked.push(item);
         setReload(!reload);
     }
+    const skipThis = (e) => {
+        
+        setReload(!reload);
+    }
 
     return (
         picked.length == 5 ? (<Result picked={picked} movies={movies}/>) : (
@@ -71,11 +75,16 @@ export default function Question(props) {
                             name={value.name}  
                             key={value.id}
                             onClick={(event) => pickOne(event,value)}  
-                            stars="3.5"/>
+                            stars={value.vote_average/2}/>
                         );
                     
                     })
                 }
+                <QuestionCard
+                title="None"
+                stars="0"
+                onClick={skipThis}
+                />
             </div>
         </div>
         )
