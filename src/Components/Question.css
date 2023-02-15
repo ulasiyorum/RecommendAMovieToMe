@@ -18,7 +18,7 @@
 }
 
 .questionCard > img {
-
+    margin: auto;
     width: 250px;
     height: 250px;
     object-fit:cover;
@@ -27,15 +27,17 @@
 }
 
 .question > h1 {
-
+    margin: auto;
     font-family: Titillium Web;
 
 }
 
 .questionCard > h1 {
-    margin-bottom: 2px;
-    line-height: 5px;
-    height: 5px;
+    font-size: xx-large;
+    margin: auto;
+    width: 240px;
+    line-height: 32px;
+    height: 64px;
     font-family: Karla;
 }
 .questionCard > div > h5 {
@@ -46,7 +48,7 @@
 .questionCard > div {
     line-height: 5px;
     height: 5px;
-    justify-content: end;
+    justify-content: center;
 }
 
 .qc-stars {
@@ -60,6 +62,5 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    gap: 120px;
 
 }
