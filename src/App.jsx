@@ -16,7 +16,6 @@ function App() {
   }, []);
 
 
-
   return (
     
     movies.length == 0 ? 

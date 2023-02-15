@@ -6,7 +6,9 @@ export default async function getMovies(){
 
     const response = await fetch(requestLink).then((response) => {
         return response.json();
-    })
+    }).catch((error) => {
+        console.log(error);
+    });
     return response.results;
 
 
