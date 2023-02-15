@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Titillium+Web&display=swap');
+
+
 .questionCard {
 
     scale: 0.8;
@@ -23,13 +26,22 @@
 
 }
 
+.question > h1 {
+
+    font-family: Titillium Web;
+
+}
+
 .questionCard > h1 {
+    margin-bottom: 2px;
     line-height: 5px;
-    height: 5px
+    height: 5px;
+    font-family: Karla;
 }
 .questionCard > div > h5 {
+    margin-bottom: 2px;
     line-height: 5px;
-    height: 5px
+    height: 5px;
 }
 .questionCard > div {
     line-height: 5px;
