@@ -15,7 +15,7 @@ function App() {
     getMovieList();
   }, []);
 
-
+  
   return (
     
     movies.length == 0 ? 

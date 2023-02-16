@@ -34,8 +34,8 @@ export default function Question(props) {
         
         let tm = [];
         let random = Math.floor(Math.random() * movies.length);
-        for(let i = 0; i < 3; i++) {
-            while(tm.includes(movies[random]) || picked.includes(movies[random]))
+        for(let i = 0; i < 4; i++) {
+            while(tm.includes(movies[random]) || picked.includes(movies[random]) || ignoreList.includes(movies[random]))
             {
                 random = Math.floor(Math.random() * movies.length);
             }
@@ -49,7 +49,7 @@ export default function Question(props) {
 
     const [movies,setMovies] = useState(props.movies);
     const [reload, setReload] = useState(true);
-
+    const [ignoreList, setIgnoreList] = useState([]);
     const [picked, setPicked] = useState([]);
     let tm = getThreeMovies();
 
@@ -58,13 +58,17 @@ export default function Question(props) {
         picked.push(item);
         setReload(!reload);
     }
-    const skipThis = (e) => {
-        
+    const skipThis = (e,movs) => {
+        ignoreList.push(movs[0]);
+        ignoreList.push(movs[1]);
+        ignoreList.push(movs[2]);
+        ignoreList.push(movs[3]);
         setReload(!reload);
     }
 
     return (
-        picked.length == 5 ? (<Result picked={picked} movies={movies}/>) : (
+        picked.length == 7 ? (<Result picked={picked} movies={movies} ignoreList={ignoreList}/>) : (
+            ignoreList.length > 108 ? (<div>It seems like you don't want to watch a movie..</div>) : (
         <div className='question'>
             <h1>Pick Your Favorite!</h1>
             <div>
@@ -83,11 +87,11 @@ export default function Question(props) {
                 <QuestionCard
                 title="None"
                 stars="0"
-                onClick={skipThis}
+                onClick={(event) => skipThis(event, tm)}
                 />
             </div>
         </div>
-        )
+        ))
 
     );
 }
@@ -200,9 +204,12 @@ function Result(props) {
         let maxSimilarity = 0;
         movies.forEach((movie) => {
             let si = findSimilarities(movie,specified);
-            if(si > maxSimilarity) {
+            //console.log(si + " | " + movie.title);
+            if(si > maxSimilarity && !picked.includes(movie)) {
                 perfect = movie;
                 maxSimilarity = si;
+            } else if(si == maxSimilarity && Math.floor(Math.random) * 2 == 1 && !picked.includes(movie)) {
+                perfect = movie;
             }
         });
     
@@ -218,37 +225,46 @@ function Result(props) {
 
         if(movie.genre_ids.includes(specified.genres[0]))
         {
-            similarity += 50;
+            similarity += 55;
         } else {
-            similarity -= 20;
+            similarity -= 24;
         }
 
         if(movie.genre_ids.includes(specified.genres[1]))
         {
-            similarity += 20;
+            similarity += 36;
         } else {
-            similarity -= 5;
+            similarity -= 12;
         }
 
         if(movie.genre_ids.includes(specified.genres[2]))
         {
-            similarity += 5;
+            similarity += 19;
         } else {
-            similarity -= 1;
+            similarity -= 7;
         }
+
+        if(movie.genre_ids.includes(specified.genres[3]))
+        {
+            similarity += 8;
+        } else {
+            similarity -= 3;
+        }
+
+
 
         if(movie.adult == specified.adult) {
             similarity += 10;
         }
 
         let popularity = movie.popularity;
-        while(!(popularity < specified.popularity + 100 || popularity > specified.popularity - 100)) {
-            if(popularity < specified.popularity - 100) {
-                popularity += 100;
-                similarity -= 4;
+        while(!(popularity < specified.popularity + 120 || popularity > specified.popularity - 120)) {
+            if(popularity < specified.popularity - 120) {
+                popularity += 120;
+                similarity -= 3.6;
             } else {
-                popularity -= 100;
-                similarity -= 4;
+                popularity -= 120;
+                similarity -= 3.6;
             }
         }
         let vote = movie.vote_average;
@@ -289,7 +305,14 @@ function Result(props) {
             }
         }
         else if(specified.howNew == 0) {
-            similarity += 5;
+            
+            if(dateOfMovie >= new Date().getFullYear() - 8) {
+                similarity += 5;
+            } else if(dateOfMovie >= new Date().getFullYear() - 16) {
+                similarity += 7;
+            } else {
+                similarity += 4;
+            }
         } else if(specified.howNew > -3) {
             if(dateOfMovie >= new Date().getFullYear() - 12) {
                 similarity -= 10;
@@ -349,7 +372,7 @@ function getGenreNamesWithId(id,tvGenres,movieGenres) {
 
 function maxGenre(set){
     let genre = [];
-    while(genre.length < 3) {
+    while(genre.length < 4) {
         let max = 0;
         let selected = 0;
         set.forEach((value,key) => {
