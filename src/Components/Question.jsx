@@ -245,20 +245,20 @@ function Result(props) {
         while(!(popularity < specified.popularity + 100 || popularity > specified.popularity - 100)) {
             if(popularity < specified.popularity - 100) {
                 popularity += 100;
-                similarity -= 5;
+                similarity -= 4;
             } else {
                 popularity -= 100;
-                similarity -= 5;
+                similarity -= 4;
             }
         }
         let vote = movie.vote_average;
         while(!(vote <= specified.vote + 1 || vote >= specified.vote - 1)) {
             if(vote > specified.vote + 1) {
                 vote--;
-                similarity -= 5;
+                similarity -= 4;
             } else {
                 vote++;
-                similarity -= 5;
+                similarity -= 4;
             }
         }
 
@@ -319,7 +319,12 @@ function Result(props) {
     const perfect = findPerfectMovie(specified);
     // getGenreNamesWithId(max,genre.tv.genres,genre.movie.genres)
     return ( 
-        genre.tv == undefined ? (<div>Waiting for results</div>) : (<div>{perfect.title}</div>)
+        genre.tv == undefined ? (<div>Waiting for results</div>) :
+         (
+         <div className='questionCard'>
+            <img src={imagePath + perfect.poster_path}></img>
+            <h1>{perfect.title}</h1>
+         </div>)
     );
 }
 
@@ -355,7 +360,6 @@ function maxGenre(set){
         });
         genre.push(selected);
     }
-    console.log(genre);
     return genre;
 
 }

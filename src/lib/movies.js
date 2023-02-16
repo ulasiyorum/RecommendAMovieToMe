@@ -53,8 +53,6 @@ export default async function getMovies(){
         if(!response.results.includes(element))
             response.results.push(element);
     });
-
-    console.log(response.results);
     return response.results;
 
 
