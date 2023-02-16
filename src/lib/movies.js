@@ -54,6 +54,7 @@ export default async function getMovies(){
             response.results.push(element);
     });
 
+    console.log(response.results);
     return response.results;
 
 
