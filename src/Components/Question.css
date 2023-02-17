@@ -1,5 +1,168 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&family=Titillium+Web&display=swap');
 
+.result {
+    width: 1200px;
+    height: 500px;
+    scale: 0.8;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    transition: 0.4s;
+    animation-name: resultAnim;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+
+}
+
+.propertyContainer {
+    flex-direction: column;
+
+}
+
+.propertyContainerSecond {
+    margin-top: 24px;
+    margin-left: 14px;
+    column-gap: 144px;
+    column-count: 2;
+}
+.match {
+    
+    text-align: end;
+    margin-top: 100px;
+    font-size: 28px;
+
+}
+.resultTitle {
+    margin: auto;
+
+}
+.next {
+    position: absolute;
+    left: 0px;
+    top: 110%;
+    width: 100px;
+    height: 44px;
+
+  }
+  
+  .next:hover {
+    box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+  }
+  
+  .next:disabled {
+    background-color: rgba(0, 0, 0, .12);
+    box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+    color: rgba(0, 0, 0, .37);
+    cursor: default;
+    pointer-events: none;
+  }
+  
+  .next:not(:disabled) {
+    background-color: #424242;
+  }
+  
+  .next:focus {
+    box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+  }
+  
+  .next:active {
+    box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+    background: #2c2c2c;
+  }
+.prev {
+    position: absolute;
+    left: 100%;
+    top: 110%;
+    width: 100px;
+    height: 44px;
+  
+  }
+  
+  .prev:hover {
+    box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+  }
+  
+  .prev:disabled {
+    background-color: rgba(0, 0, 0, .12);
+    box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+    color: rgba(0, 0, 0, .37);
+    cursor: default;
+    pointer-events: none;
+  }
+  
+  .prev:not(:disabled) {
+    background-color: #424242;
+  }
+  
+  .prev:focus {
+    box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+  }
+  
+  .prev:active {
+    box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+    background: #2c2c2c;
+  }
+
+.resultProperty {
+
+    width:fit-content;
+    text-align: start;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: auto;
+}
+
+.genres {
+    text-align: start;
+    width: fit-content;
+    margin-top: 0px;
+    margin-right: 4px;
+    margin-left: 20px;
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+
+}
+.genreList {
+    margin: 0px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.paragraph {
+
+    text-align: start;
+    margin: auto;
+    font-size: 19px;
+    margin-top: 20px;
+    margin-left: 20px;
+
+}
+
+.resultImage {
+    margin: auto;
+    width: 400px;
+    height: 500px;
+    object-fit:cover;
+    border-radius: 20px;
+
+}
+
+@keyframes resultAnim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.question {
+    animation-name: qCards;
+    animation-duration: 1.4s;
+}
 
 .questionCard {
 
@@ -8,7 +171,26 @@
     display: flex;
     flex-direction: column;
     transition: 0.4s;
-
+    animation-name: qCard;
+    animation-duration: 0.6s;
+}
+@keyframes qCard {
+    0% {
+        scale: 0.86;
+    }
+    100% {
+        scale: 0.8;
+    }
+}
+@keyframes qCards {
+    0% {
+        margin-top: 25px;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0px;
+    }
 }
 
 .questionCard:hover{
@@ -29,6 +211,7 @@
 .question > h1 {
     margin: auto;
     font-family: Titillium Web;
+    
 
 }
 
