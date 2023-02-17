@@ -273,12 +273,12 @@ function Result(props) {
         }
 
         let popularity = movie.popularity;
-        while(!(popularity < specified.popularity + 120 || popularity > specified.popularity - 120)) {
-            if(popularity < specified.popularity - 120) {
-                popularity += 120;
+        while(!(popularity < specified.popularity + 24 || popularity > specified.popularity - 24)) {
+            if(popularity < specified.popularity - 24) {
+                popularity += 24;
                 similarity -= 3.6;
             } else {
-                popularity -= 120;
+                popularity -= 24;
                 similarity -= 3.6;
             }
         }

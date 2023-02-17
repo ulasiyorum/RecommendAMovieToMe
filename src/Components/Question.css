@@ -14,26 +14,33 @@
 
 }
 
+
+
+
 .propertyContainer {
     flex-direction: column;
+    width: 1000px;
 
 }
 
 .propertyContainerSecond {
     margin-top: 24px;
     margin-left: 14px;
-    column-gap: 144px;
     column-count: 2;
+    column-gap: 10px;
 }
 .match {
-    
-    text-align: end;
-    margin-top: 100px;
+    animation-name: propertyLoad;
+    animation-duration: 2s;
+    text-align: start;
+    margin-left: 24px;
+    margin-top: auto;
     font-size: 28px;
 
 }
 .resultTitle {
     margin: auto;
+    width: 1000px;
 
 }
 .next {
@@ -104,12 +111,29 @@
   }
 
 .resultProperty {
-
-    width:fit-content;
+    overflow: hidden;
+    height: 40px;
+    width:500px;
     text-align: start;
     font-size: 20px;
     margin-left: 10px;
     margin-top: auto;
+    animation-name: propertyLoad;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes propertyLoad {
+
+    0% {
+        height: 0px;
+        opacity: 0;
+    }
+    100% {
+        height: 40px;
+        opacity: 1;
+    }
+
 }
 
 .genres {
@@ -132,9 +156,9 @@
 }
 
 .paragraph {
-
     text-align: start;
     margin: auto;
+    width: 800px;
     font-size: 19px;
     margin-top: 20px;
     margin-left: 20px;
