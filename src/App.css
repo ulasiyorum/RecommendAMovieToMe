@@ -1,9 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Titillium+Web&display=swap');
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: Karla;
 }
+
+.intro {
+  opacity: 0;
+  margin: auto;
+  transition: 0.4s;
+
+}
+
+.skip {
+  position: absolute;
+  left: 90%;
+  top: 90%;
+
+}
+
+.skip:hover {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.skip:disabled {
+  background-color: rgba(0, 0, 0, .12);
+  box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+  color: rgba(0, 0, 0, .37);
+  cursor: default;
+  pointer-events: none;
+}
+
+.skip:not(:disabled) {
+  background-color: #424242;
+}
+
+.skip:focus {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.skip:active {
+  box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+  background: #2c2c2c;
+}
+
+.intro-anim1 {
+  position: relative;
+  animation-name: intro-anim-1;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+.intro-anim2 {
+  position: relative;
+  animation-name: intro-anim-2;
+  animation-duration: 7s;
+  animation-fill-mode: forwards;
+}
+.intro-anim3 {
+  position: relative;
+  animation-name: intro-anim-3;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes intro-anim-1 {
+  
+  0% 
+  {
+    opacity: 0;
+    top: -500px;
+  }
+  25%
+  {
+    opacity: 1;
+    top: 0px;
+  }
+  75% 
+  {
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+  }
+  100% 
+  {
+    opacity: 0;
+    left: 640px;
+  }
+}
+@keyframes intro-anim-2 {
+  
+  0% 
+  {
+    opacity: 0;
+    top: 500px;
+  }
+  25%
+  {
+    opacity: 1;
+    top: 0px;
+  }
+  75% 
+  {
+    top: 0px;
+    opacity: 1;
+    left: 0px;
+  }
+  100% 
+  {
+    opacity: 0;
+    left: -1280px;
+  }
+}
+@keyframes intro-anim-3 {
+  
+  0% 
+  {
+    opacity: 0;
+    left: 800px;
+  }
+  25%
+  {
+    opacity: 1;
+    left: 0px;
+  }
+  75% 
+  {
+    left: 0px;
+    opacity: 1;
+    top: 0px
+  }
+  100% 
+  {
+    opacity: 0;
+    top: -500px;
+  }
+}
+
 
 .logo {
   height: 6em;
@@ -18,20 +154,7 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
@@ -40,3 +163,4 @@
 .read-the-docs {
   color: #888;
 }
+
