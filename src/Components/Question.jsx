@@ -3,7 +3,9 @@ const process = import.meta.env;
 const imagePath = process.VITE_IMAGE_PATH;
 import { useState, useEffect } from 'react';
 import { getGenres } from '../lib/movies';
- 
+
+
+
 
 
 
