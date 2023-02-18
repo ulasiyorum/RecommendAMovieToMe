@@ -1,6 +1,7 @@
 import './Question.css';
-import { imagePath } from '../lib/private';
-import { useState, useEffect, useDebugValue } from 'react';
+const process = import.meta.env;
+const imagePath = process.VITE_IMAGE_PATH;
+import { useState, useEffect } from 'react';
 import { getGenres } from '../lib/movies';
 
 

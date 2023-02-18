@@ -1,4 +1,6 @@
-import { movieApi } from "./private";
+const process = import.meta.env;
+
+const movieApi = process.VITE_MOVIE_API;
 
 const requestLink = "https://api.themoviedb.org/3/trending/all/day?api_key=" + movieApi;
 
