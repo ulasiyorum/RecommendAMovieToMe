@@ -360,7 +360,9 @@ function Result(props) {
             similarity -= -50;
         } else if(!specified.langMatters && movie.original_language == 'ja' && specified.isAnime > 1) {
             similarity += (4 * specified.isAnime);
-        } 
+        } else {
+            similarity += 12;
+        }
         
         return similarity;
     }
