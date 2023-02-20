@@ -140,12 +140,13 @@ function Result(props) {
 
     const specify = (genresList,pickedMovies) => {
 
-        let obj = {genres:genresList, adult:undefined, popularity: undefined, vote: undefined, howNew: undefined, langMatters: undefined};
+        let obj = {genres:genresList, adult:undefined, popularity: undefined, vote: undefined, howNew: undefined, langMatters: undefined, isAnime: undefined};
         let popularity = 0;
         let star = 0;
         let adult = 0;
         let date = 0;
         let langCount = 0;
+        let animeCount = 0;
 
         pickedMovies.forEach((value) => {
             if(value.adult) {
@@ -184,6 +185,9 @@ function Result(props) {
             if(value.original_language == 'en')
                 langCount++;
 
+            if(value.original_language == 'ja')
+                animeCount++;
+
         });
 
         obj.popularity = popularity / pickedMovies.length;
@@ -191,7 +195,7 @@ function Result(props) {
         obj.adult = adult > 2;
         obj.howNew = date;
         obj.langMatters = langCount / picked.Length == 1;
-
+        obj.isAnime = animeCount;
         return obj;
 
     }
@@ -351,8 +355,12 @@ function Result(props) {
 
         if(specified.langMatters && movie.original_language != 'en')
         {    
-            similarity -= 25;
-        }
+            similarity -= 36;
+        } else if(specified.langMatters && movie.original_language == 'ja' && specified.isAnime == 0) {
+            similarity -= -50;
+        } else if(!specified.langMatters && movie.original_language == 'ja' && specified.isAnime > 1) {
+            similarity += (4 * specified.isAnime);
+        } 
         
         return similarity;
     }
