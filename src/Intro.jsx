@@ -43,7 +43,7 @@ export default function Intro(props) {
       }
 
       function getAnimDuration(index) {
-
+        console.log(2);
         const dur = parseInt(getComputedStyle(animatedComponent[2-index].current).animationDuration.substring(0,1)) * 1000;
         console.log(dur);
         return dur;
