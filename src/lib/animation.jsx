@@ -1,4 +1,7 @@
 import "../App.css";
+import { useRef } from "react";
+
+
 export default function intro(){
     let anims = document.querySelectorAll('.intro');
     if(anims.length == 0)
